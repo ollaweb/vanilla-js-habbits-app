@@ -1,3 +1,4 @@
+@import "utils/reset.scss";
 @import "utils/vars.scss";
 
 html {
@@ -6,9 +7,11 @@ html {
 
 body {
     font-family: $mainFont;
+    color: $text-color;
     font-size: 14px;
     font-weight: 400;
-    line-height: 120%;
+    line-height: 110%;
+    background-color: $background-color;
 }
 
 .container {

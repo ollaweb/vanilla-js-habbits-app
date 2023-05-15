@@ -1,0 +1,92 @@
+.habbit {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
+    background-color: $light-color;
+    &:not(:last-child) {
+        margin-bottom: 12px;
+    }
+    &__day {
+        flex: 0 0 130px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px 0 0 10px;
+    }
+    &__body {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 0 10px 10px 0;
+        background-color: #ffffff;
+        border-left: 1px solid #e7ebfb;
+    }
+    &__comment {
+        padding: 19px 25px;
+        flex: 1 1 auto;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 150%;
+
+        &_form {
+            padding: 5px 19px 5px 25px;
+        }
+    }
+    &__delete {
+        padding: 19px;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        &:hover {
+            & svg {
+                & path {
+                    stroke: $primary-color;
+                }
+            }
+        }
+    }
+    & form {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        & input {
+            flex: 1 0 auto;
+            padding: 12px 20px 12px 48px;
+            background: #ffffff;
+            border: 1px solid #e7ebfb;
+            border-radius: 9px;
+            &::placeholder {
+                color: #8899a8;
+            }
+            &:focus {
+                border-color: #b3b1fd;
+            }
+        }
+        & button {
+            display: block;
+            height: 100%;
+            padding: 12px 32px;
+            font-weight: 500;
+            font-size: 13px;
+            color: $primary-color;
+            background: #edecfe;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.3s ease-out;
+            &:hover {
+                background-color: #dfdef9;
+            }
+        }
+    }
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
