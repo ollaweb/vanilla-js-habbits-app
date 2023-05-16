@@ -152,6 +152,7 @@ function rerender(activeHabbitId) {
     if (!activeHabbit) {
         return
     }
+    document.location.replace(document.location.pathname + '#' + activeHabbitId);
     rerenderMenu(activeHabbit);
     rerenderHeader(activeHabbit);
     rerenderContent(activeHabbit);
@@ -237,5 +238,12 @@ habbitForm['comment'].addEventListener('focus', () => {
 //Immediately Invoked Function Expression(IIFE) for init
 (() => {
     loadData();
-    rerender(habbits[0].id);
+    const currentHashId = Number(document.location.hash.replace('#', ''));
+    const habbitToLand = habbits.find(habbit => habbit.id === currentHashId);
+    if (habbitToLand) {
+        rerender(habbitToLand.id);
+    } else {
+        rerender(habbits[0].id);
+    }
+
 })();
