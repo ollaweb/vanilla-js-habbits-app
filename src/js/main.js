@@ -237,5 +237,5 @@ habbitForm['comment'].addEventListener('focus', () => {
 //Immediately Invoked Function Expression(IIFE) for init
 (() => {
     loadData();
-    rerender(1);
+    rerender(habbits[0].id);
 })();
