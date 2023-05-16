@@ -78,7 +78,7 @@ function rerenderContent(activeHabbit) {
         element.innerHTML = `<div class="habbit__day">День ${Number(index) + 1}</div>
         <div class="habbit__body">
         <div class="habbit__comment">${activeHabbit.days[index].comment}</div>
-      <button class="habbit__delete">
+      <button class="habbit__delete" onclick="deleteDay(${index})">
         <svg
           width="24"
           height="24"
@@ -97,13 +97,14 @@ function rerenderContent(activeHabbit) {
       </button>
         </div>`;
         page.content.daysContainer.appendChild(element);
-        page.content.nextDay.innerText = `День ${activeHabbit.days.length + 1}`;
     }
+    page.content.nextDay.innerText = `День ${activeHabbit.days.length + 1}`;
 }
 
 function rerender(activeHabbitId) {
     globalActiveHabbitId = activeHabbitId;
     const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
+    console.log(activeHabbit);
     if (!activeHabbit) {
         return
     }
@@ -137,6 +138,24 @@ habbitForm.addEventListener('submit', (event) => {
     rerender(globalActiveHabbitId);
     saveData();
 });
+
+//delete day with comment
+function deleteDay(index) {
+    habbits = habbits.map(habbit => {
+        if (habbit.id === globalActiveHabbitId) {
+            habbit.days.splice(index, 1);
+            return {
+                ...habbit,
+                days: habbit.days
+            };
+        }
+        return habbit;
+    });
+    rerender(globalActiveHabbitId);
+    saveData();
+}
+
+window.deleteDay = deleteDay;
 
 habbitForm['comment'].addEventListener('focus', () => {
     habbitForm['comment'].classList.remove('error');
