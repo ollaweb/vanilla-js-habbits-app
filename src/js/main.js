@@ -104,7 +104,6 @@ function rerenderContent(activeHabbit) {
 function rerender(activeHabbitId) {
     globalActiveHabbitId = activeHabbitId;
     const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
-    console.log(activeHabbit);
     if (!activeHabbit) {
         return
     }

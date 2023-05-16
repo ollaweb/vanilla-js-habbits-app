@@ -170,6 +170,11 @@ input {
   line-height: normal;
 }
 
+button {
+  padding: 0;
+  background-color: transparent;
+}
+
 // Table
 table {
   border-collapse: collapse;

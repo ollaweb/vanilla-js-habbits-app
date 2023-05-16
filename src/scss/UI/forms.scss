@@ -1,0 +1,32 @@
+.form {
+    & input {
+        padding: 12px 20px;
+        background: #ffffff;
+        border: 1px solid #e7ebfb;
+        border-radius: 9px;
+        &::placeholder {
+            color: #8899a8;
+        }
+        &:focus {
+            border-color: #b3b1fd;
+        }
+        &.error {
+            border: 1px solid #f4a69f;
+        }
+    }
+    & button {
+        display: block;
+        height: 100%;
+        padding: 12px 32px;
+        font-weight: 500;
+        font-size: 13px;
+        color: $primary-color;
+        background: #edecfe;
+        border-radius: 9px;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        &:hover {
+            background-color: #dfdef9;
+        }
+    }
+}

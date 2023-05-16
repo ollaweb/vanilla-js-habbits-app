@@ -1,0 +1,29 @@
+.icon-list {
+    & button {
+        width: 45px;
+        height: 45px;
+        background: #ffffff;
+        box-shadow: 0px 8px 14px rgba(62, 107, 224, 0.12);
+        border-radius: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        &.active {
+            background: $primary-color;
+            & img {
+                transition: all 0.3s ease-out;
+                filter: brightness(0) invert(1);
+            }
+        }
+        &:hover {
+            background: $primary-hover;
+            & img {
+                filter: brightness(0) invert(1);
+            }
+        }
+    }
+    &_outlined {
+        & button {
+            border: 1px solid $primary-color;
+        }
+    }
+}
