@@ -19,7 +19,8 @@ const page = {
         nextDay: document.querySelector('main .habbit .habbit__day')
     },
     popup: {
-        index: document.querySelector('.cover')
+        index: document.querySelector('.cover'),
+        form: document.querySelector('.popup__form')
     }
 }
 
@@ -169,6 +170,16 @@ function deleteDay(index) {
 }
 
 window.deleteDay = deleteDay;
+
+//work with popup
+function setIcon(context, iconName) {
+    page.popup.form['icon'].value = iconName;
+    const activeIcon = document.querySelector('.popup__icon-select button.active');
+    activeIcon.classList.remove('active');
+    context.classList.add('active');
+}
+
+window.setIcon = setIcon;
 
 habbitForm['comment'].addEventListener('focus', () => {
     habbitForm['comment'].classList.remove('error');
