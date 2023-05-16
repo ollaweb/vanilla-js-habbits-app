@@ -37,6 +37,36 @@ function saveData() {
     localStorage.setItem(HABBIT_KEY, JSON.stringify(habbits));
 }
 
+function validateFormAndGetData(form, fields) {
+    const formData = new FormData(form);
+    const res = {};
+    let isValid = true;
+    for (const field of fields) {
+        const fieldValue = formData.get(field).trim();
+        form[field].classList.remove('error');
+        if (!fieldValue) {
+            form[field].classList.add('error');
+            resetForm(form, [field])
+        }
+        res[field] = fieldValue;
+    }
+    for (const field of fields) {
+        if (!res[field]) {
+            isValid = false;
+        }
+    }
+    if (!isValid) {
+        return;
+    }
+    return res;
+}
+
+function resetForm(form, fields) {
+    for (const field of fields) {
+        form[field].value = '';
+    }
+}
+
 //toggle Popup
 function togglePopup() {
     if (page.popup.index.classList.contains('active')) {
@@ -130,25 +160,21 @@ function rerender(activeHabbitId) {
 //work with days
 const habbitForm = document.querySelector('.habbit__form')
 habbitForm.addEventListener('submit', (event) => {
-    const form = event.target;
     event.preventDefault();
-    const data = new FormData(form);
-    const comment = data.get('comment').trim();
-    form['comment'].classList.remove('error');
-
-    if (!comment) {
-        form['comment'].classList.add('error');
+    const data = validateFormAndGetData(event.target, ['comment']);
+    if (!data) {
+        return;
     }
     habbits = habbits.map(habbit => {
         if (habbit.id === globalActiveHabbitId) {
             return {
                 ...habbit,
-                days: habbit.days.concat([{ comment }])
+                days: habbit.days.concat([{ comment: data.comment }])
             }
         }
         return habbit;
     });
-    form['comment'].value = '';
+    resetForm(event.target, ['comment']);
     rerender(globalActiveHabbitId);
     saveData();
 });
